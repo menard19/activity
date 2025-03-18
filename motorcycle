@@ -1,0 +1,49 @@
+class Motorcycle:
+    def __init__(self, brand, model, fuel_level=0):
+        self.brand = brand
+        self.model = model
+        
+        self._fuel_level = fuel_level
+
+    def refuel(self, amount):
+        if amount > 0:
+            self._fuel_level += amount
+            print(f"Refueled by {amount} liters. Current fuel level: {self._fuel_level} liters.")
+        else:
+            print("Refuel amount must be positive.")
+
+    def consume_fuel(self, amount):
+        if amount > 0:
+            if amount <= self._fuel_level:
+                self._fuel_level -= amount
+                print(f"Consumed {amount} liters of fuel. Current fuel level: {self._fuel_level} liters.")
+            else:
+                print("Not enough fuel for this trip.")
+        else:
+            print("Consumption amount must be positive.")
+
+    
+    def get_fuel_level(self):
+        return self._fuel_level
+
+    
+    def display_motorcycle_info(self):
+        print(f"Motorcycle Brand: {self.brand}")
+        print(f"Motorcycle Model: {self.model}")
+        print(f"Current Fuel Level: {self._fuel_level} liters")
+
+
+
+motorcycle = Motorcycle("Yamaha", "YZF-R1", 10)
+
+motorcycle.display_motorcycle_info()
+
+motorcycle.refuel(5)    # Refuel the motorcycle with 5 liters of fuel
+
+motorcycle.consume_fuel(3)  # Consume 3 liters of fuel
+
+print("Current Fuel Level:", motorcycle.get_fuel_level())  # Output: 12
+
+motorcycle.consume_fuel(20)  # Not enough fuel
+
+motorcycle.display_motorcycle_info()
